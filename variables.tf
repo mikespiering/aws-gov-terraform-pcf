@@ -5,21 +5,27 @@ variable "aws_secret_key" {
 	default = ""
 }
 variable "environment" {
-	default = "FEMA-PCF"
+	default = "-PCF"
 }
 variable "aws_region" {
 	default = "us-gov-west-1"
 }
-variable "aws_key_name" {}
-variable "aws_cert_arn" {}
+variable "aws_key_name" {
+        default = ""
+}
+variable "aws_cert_arn" {
+        default = ""
+}
 variable "rds_db_username" {
-	default = "admin"
+	default = ""
 }
 variable "rds_db_password" {
-	default = "abcd1234"
+	default = ""
 }
 #variable "opsman_ami" {}
-variable "amis_nat" {}
+variable "amis_nat" {
+        default = ""
+}
 variable "az1" {
 	default = "us-gov-west-1a"
 }
