@@ -5,7 +5,7 @@
 /*
   Ops Manager Security group
 */
-/* IGNORING For Gov Cloud
+# IGNORING For Gov Cloud
 resource "aws_security_group" "directorSG" {
     name = "${var.environment}-pcf_director_sg"
     description = "Allow incoming connections for Ops Manager."
@@ -38,7 +38,6 @@ resource "aws_security_group" "directorSG" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
-*/
 /*
   RDS Security group
 */
