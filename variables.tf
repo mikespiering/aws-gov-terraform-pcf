@@ -5,7 +5,7 @@ variable "aws_secret_key" {
 	default = ""
 }
 variable "environment" {
-	default = "-PCF"
+	default = ""
 }
 variable "aws_region" {
 	default = "us-gov-west-1"
@@ -22,9 +22,11 @@ variable "rds_db_username" {
 variable "rds_db_password" {
 	default = ""
 }
-#variable "opsman_ami" {}
+variable "opsman_ami" {
+	default = "ami-4cee6a2d"
+}
 variable "amis_nat" {
-        default = ""
+        default = "ami-3f0a8f5e"
 }
 variable "az1" {
 	default = "us-gov-west-1a"
@@ -32,11 +34,11 @@ variable "az1" {
 variable "az2" {
 	default = "us-gov-west-1b"
 }
-/*
+
 variable "opsman_instance_type" {
     description = "Instance Type for OpsMan"
     default = "m3.large"
-} */
+}
 
 variable "nat_instance_type" {
     description = "Instance Type for NAT instances"
@@ -78,11 +80,9 @@ variable "services_subnet_cidr_az1" {
 variable "nat_ip_az1" {
     default = "10.0.0.6"
 }
-/* IGNORING Ops Man
 variable "opsman_ip_az1" {
     default = "10.0.0.7"
 }
-*/
 
 /*
   Availability Zone 2

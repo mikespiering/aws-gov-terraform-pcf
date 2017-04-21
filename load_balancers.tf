@@ -3,21 +3,20 @@ resource "aws_elb" "PcfHttpElb" {
 # Ignore AZ3 subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
   subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}"]
   security_groups = ["${aws_security_group.PcfHttpElbSg.id}"]
-#create secure listeners manually later doue to no cert manager in Gov
   listener {
     instance_port = 80
     instance_protocol = "HTTP"
-    lb_port = 80
-    lb_protocol = "HTTP"
+    lb_port = 443
+    lb_protocol = "HTTPS"
    # ssl_certificate_id = "${var.aws_cert_arn}"
   }
-/*  listener {
+  listener {
     instance_port = 80
     instance_protocol = "TCP"
     lb_port = 4443
     lb_protocol = "SSL"
     ssl_certificate_id = "${var.aws_cert_arn}"
-  } */
+  } 
   health_check {
     target = "TCP:80"
     timeout = 5

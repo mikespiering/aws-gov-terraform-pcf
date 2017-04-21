@@ -9,7 +9,8 @@ resource "aws_instance" "opsmman_az1" {
     associate_public_ip_address = true
     private_ip = "${var.opsman_ip_az1}"
     root_block_device {
-        volume_size = 255
+        volume_size = "255"
+        volume_type = "gp2"
     }
     tags {
         Name = "${var.environment}-OpsMan az1"
