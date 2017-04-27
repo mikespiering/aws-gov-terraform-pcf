@@ -8,7 +8,7 @@ resource "aws_elb" "PcfHttpElb" {
     instance_protocol = "HTTP"
     lb_port = 443
     lb_protocol = "HTTPS"
-   # ssl_certificate_id = "${var.aws_cert_arn}"
+    ssl_certificate_id = "${var.aws_cert_arn}"
   }
   listener {
     instance_port = 80
