@@ -20,6 +20,7 @@ resource "aws_db_instance" "pcf_rds" {
     parameter_group_name    = "default.mysql5.6"
     vpc_security_group_ids  = ["${aws_security_group.rdsSG.id}"]
     multi_az                = true
+    storage_encrypted       = true
     backup_retention_period = 7
     apply_immediately       = true
 }

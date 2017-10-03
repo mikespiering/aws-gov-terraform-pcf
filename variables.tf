@@ -1,29 +1,29 @@
 variable "aws_access_key" {
-	default = ""
+	default = "AKIALR35VXXKOQXY3Y3A"
 }
 variable "aws_secret_key" {
-	default = ""
+	default = "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"
 }
 variable "environment" {
-	default = ""
+	default = "mrs"
 }
 variable "aws_region" {
 	default = "us-gov-west-1"
 }
 variable "aws_key_name" {
-        default = ""
+        default = "mspiering-govcloud"
 }
 variable "aws_cert_arn" {
-        default = ""
+        default = "arn:aws-us-gov:acm:us-gov-west-1:188453446942:certificate/a6345fdb-5538-4f32-b75d-ee163e37d0a1"
 }
 variable "rds_db_username" {
-	default = ""
+	default = "rdsmspiering"
 }
 variable "rds_db_password" {
-	default = ""
+	default = "|JIQ#aQ-zcNy"
 }
 variable "opsman_ami" {
-	default = "ami-4cee6a2d"
+	default = "ami-fad1539b"
 }
 variable "amis_nat" {
         default = "ami-3f0a8f5e"
@@ -33,6 +33,10 @@ variable "az1" {
 }
 variable "az2" {
 	default = "us-gov-west-1b"
+}
+/*MRS - existing gateway to attach */
+variable "aws_vpn_gateway_id" {
+	 default = "vgw-b8fe9e9b"
 }
 
 variable "opsman_instance_type" {
@@ -146,7 +150,8 @@ variable "nat_ip_az3" {
     default = "10.0.2.6"
 }
 */
-
+/*
 variable "route53_zone_id" {
     default = "ZG7DC4PX2OYY4"
 }
+*/

@@ -5,7 +5,9 @@ resource "aws_route_table" "PublicSubnetRouteTable" {
 
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_internet_gateway.internetGw.id}"
+/*MRS no internet gw */        gateway_id = "${aws_internet_gateway.internetGw.id}"
+    /*MRS use virtual gateway instead */
+    gateway_id = "${aws_vpn_gateway_attachment.vpn_attachment.vpn_gateway_id}"
     }
 
     tags {

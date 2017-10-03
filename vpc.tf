@@ -8,12 +8,21 @@ resource "aws_vpc" "PcfVpc" {
         Name = "${var.environment}-terraform-pcf-vpc"
     }
 }
+/* MRS - NO Internet Gateway, replace with a vpn gateway attachment.
 resource "aws_internet_gateway" "internetGw" {
     vpc_id = "${aws_vpc.PcfVpc.id}"
     tags {
         Name = "${var.environment}-internet-gateway"
     }
 }
+*/
+
+/* MRS - This assumes there is an existing gateway that needs to be attached to the VPC */
+resource "aws_vpn_gateway_attachment" "vpn_attachment" {
+  vpc_id         = "${aws_vpc.PcfVpc.id}"
+  vpn_gateway_id = "${var.aws_vpn_gateway_id}"
+}
+
 
 # 3. NAT instance setup
 # 3.1 Security Group for NAT

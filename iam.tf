@@ -72,7 +72,7 @@ EOF
 }
 
 resource "aws_iam_policy" "PcfAdminPolicy" {
-    name = "PcfAdminPolicy"
+    name = "PcfAdminPolicyMRS"
     path = "/"
     description = "${var.environment} PCF Admin Policy"
     policy = "${data.aws_iam_policy_document.pcf_iam_rds_role_policy_document.json}"

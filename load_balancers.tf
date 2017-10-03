@@ -3,6 +3,7 @@ resource "aws_elb" "PcfHttpElb" {
 # Ignore AZ3 subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
   subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}"]
   security_groups = ["${aws_security_group.PcfHttpElbSg.id}"]
+  internal = true /*MRS needs only internal ELBS*/
   listener {
     instance_port = 80
     instance_protocol = "HTTP"
@@ -34,7 +35,7 @@ resource "aws_elb" "PcfSshElb" {
 # Ignore AZ3 subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
   subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}"]
   security_groups = ["${aws_security_group.PcfSshElbSg.id}"]
-
+  internal = true /*MRS needs only internal ELBS*/
   listener {
     instance_port = 2222
     instance_protocol = "TCP"
@@ -58,7 +59,7 @@ resource "aws_elb" "PcfTcpElb" {
   name = "${var.environment}-Pcf-Tcp-Elb"
   subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
   security_groups = ["${aws_security_group.PcfTcpElbSg.id}"]
-
+ 
   listener {
     instance_port = 1024
     instance_protocol = "TCP"
