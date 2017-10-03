@@ -29,7 +29,7 @@ variable "rds_db_password" {
 	 default = ""
 }
 variable "opsman_ami" {
-	 default = "ami-4cee6a2d"
+	 default = "ami-fad1539b"
 }
 variable "amis_nat" {
         default = "ami-3f0a8f5e"
