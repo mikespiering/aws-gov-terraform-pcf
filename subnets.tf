@@ -1,10 +1,10 @@
 /*
   For First availability zone
 */
-
+/* MRS - Client will be creating the public subnets 
 # 1. Create Public Subnet
 resource "aws_subnet" "PcfVpcPublicSubnet_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.public_subnet_cidr_az1}"
     availability_zone = "${var.az1}"
@@ -13,11 +13,12 @@ resource "aws_subnet" "PcfVpcPublicSubnet_az1" {
         Name = "${var.environment}-PcfVpc Public Subnet AZ1"
     }
 }
+*/
 
 # 2. Create Private Subnets
 # 2.1 ERT
 resource "aws_subnet" "PcfVpcErtSubnet_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.ert_subnet_cidr_az1}"
     availability_zone = "${var.az1}"
@@ -28,7 +29,7 @@ resource "aws_subnet" "PcfVpcErtSubnet_az1" {
 }
 # 2.2 RDS
 resource "aws_subnet" "PcfVpcRdsSubnet_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.rds_subnet_cidr_az1}"
     availability_zone = "${var.az1}"
@@ -39,7 +40,7 @@ resource "aws_subnet" "PcfVpcRdsSubnet_az1" {
 }
 # 2.3 Services
 resource "aws_subnet" "PcfVpcServicesSubnet_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.services_subnet_cidr_az1}"
     availability_zone = "${var.az1}"
@@ -54,9 +55,9 @@ resource "aws_subnet" "PcfVpcServicesSubnet_az1" {
   done while setting up
 */
 
-
+/* MRS - Client will be creating the public subnets 
 resource "aws_subnet" "PcfVpcPublicSubnet_az2" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.public_subnet_cidr_az2}"
     availability_zone = "${var.az2}"
@@ -65,8 +66,9 @@ resource "aws_subnet" "PcfVpcPublicSubnet_az2" {
         Name = "${var.environment}-PcfVpc Public Subnet AZ2"
     }
 }
+*/
 resource "aws_subnet" "PcfVpcErtSubnet_az2" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.ert_subnet_cidr_az2}"
     availability_zone = "${var.az2}"
@@ -76,7 +78,7 @@ resource "aws_subnet" "PcfVpcErtSubnet_az2" {
     }
 }
 resource "aws_subnet" "PcfVpcRdsSubnet_az2" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.rds_subnet_cidr_az2}"
     availability_zone = "${var.az2}"
@@ -86,7 +88,7 @@ resource "aws_subnet" "PcfVpcRdsSubnet_az2" {
     }
 }
 resource "aws_subnet" "PcfVpcServicesSubnet_az2" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.services_subnet_cidr_az2}"
     availability_zone = "${var.az2}"
@@ -101,7 +103,7 @@ resource "aws_subnet" "PcfVpcServicesSubnet_az2" {
   done while setting up
 
 resource "aws_subnet" "PcfVpcPublicSubnet_az3" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.public_subnet_cidr_az3}"
     availability_zone = "${var.az3}"
@@ -111,7 +113,7 @@ resource "aws_subnet" "PcfVpcPublicSubnet_az3" {
     }
 }
 resource "aws_subnet" "PcfVpcErtSubnet_az3" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.ert_subnet_cidr_az3}"
     availability_zone = "${var.az3}"
@@ -122,7 +124,7 @@ resource "aws_subnet" "PcfVpcErtSubnet_az3" {
 }
 
 resource "aws_subnet" "PcfVpcRdsSubnet_az3" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.rds_subnet_cidr_az3}"
     availability_zone = "${var.az3}"
@@ -132,7 +134,7 @@ resource "aws_subnet" "PcfVpcRdsSubnet_az3" {
     }
 }
 resource "aws_subnet" "PcfVpcServicesSubnet_az3" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.services_subnet_cidr_az3}"
     availability_zone = "${var.az3}"
@@ -144,7 +146,7 @@ resource "aws_subnet" "PcfVpcServicesSubnet_az3" {
 */
 # Infrastructure network  - For bosh director
 resource "aws_subnet" "PcfVpcInfraSubnet_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     cidr_block = "${var.infra_subnet_cidr_az1}"
     availability_zone = "${var.az1}"

@@ -9,7 +9,7 @@
 resource "aws_security_group" "directorSG" {
     name = "${var.environment}-pcf_director_sg"
     description = "Allow incoming connections for Ops Manager."
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-Ops Manager Director Security Group"
     }
@@ -44,7 +44,7 @@ resource "aws_security_group" "directorSG" {
 resource "aws_security_group" "rdsSG" {
     name = "${var.environment}-pcf_rds_sg"
     description = "Allow incoming connections for RDS."
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-RDS Security Group"
     }
@@ -69,7 +69,7 @@ resource "aws_security_group" "rdsSG" {
 resource "aws_security_group" "pcfSG" {
     name = "${var.environment}-pcf_vms_sg"
     description = "Allow connections between PCF VMs."
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-PCF VMs Security Group"
     }

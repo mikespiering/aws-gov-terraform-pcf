@@ -1,12 +1,10 @@
 # Routing Tables for all subnets
-
+/* MRS Will be defined by the client
 resource "aws_route_table" "PublicSubnetRouteTable" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     route {
         cidr_block = "0.0.0.0/0"
-/*MRS no internet gw         gateway_id = "${aws_internet_gateway.internetGw.id}" */
-    /*MRS use virtual gateway instead */
     gateway_id = "${aws_vpn_gateway_attachment.vpn_attachment.vpn_gateway_id}"
     }
 
@@ -15,9 +13,10 @@ resource "aws_route_table" "PublicSubnetRouteTable" {
     }
 }
 
+*/
 # AZ1 Routing table
 resource "aws_route_table" "PrivateSubnetRouteTable_az1" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     route {
         cidr_block = "0.0.0.0/0"
@@ -31,7 +30,7 @@ resource "aws_route_table" "PrivateSubnetRouteTable_az1" {
 
 # AZ2 Routing table
 resource "aws_route_table" "SubnetRouteTable_az2" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     route {
         cidr_block = "0.0.0.0/0"
@@ -45,7 +44,7 @@ resource "aws_route_table" "SubnetRouteTable_az2" {
 /*
 # AZ3 Routing table
 resource "aws_route_table" "SubnetRouteTable_az3" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
 
     route {
         cidr_block = "0.0.0.0/0"

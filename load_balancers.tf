@@ -1,25 +1,24 @@
 resource "aws_elb" "PcfHttpElb" {
   name = "${var.environment}-Pcf-Http-Elb"
-# Ignore AZ3 subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
-  subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}"]
+  subnets = ["${var.public_subnet_az1_id}","${var.public_subnet_az2_id}"]
   security_groups = ["${aws_security_group.PcfHttpElbSg.id}"]
   internal = true /*MRS needs only internal ELBS*/
   listener {
-    instance_port = 80
-    instance_protocol = "HTTP"
+    instance_port = 443
+    instance_protocol = "TCP"
     lb_port = 443
-    lb_protocol = "HTTPS"
+    lb_protocol = "SSL"
     ssl_certificate_id = "${var.aws_cert_arn}"
   }
   listener {
-    instance_port = 80
+    instance_port = 443
     instance_protocol = "TCP"
     lb_port = 4443
     lb_protocol = "SSL"
     ssl_certificate_id = "${var.aws_cert_arn}"
   } 
   health_check {
-    target = "TCP:80"
+    target = "TCP:443"
     timeout = 5
     interval = 30
     unhealthy_threshold = 2
@@ -32,8 +31,7 @@ resource "aws_elb" "PcfHttpElb" {
 
 resource "aws_elb" "PcfSshElb" {
   name = "${var.environment}-Pcf-Ssh-Elb"
-# Ignore AZ3 subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}","${aws_subnet.PcfVpcPublicSubnet_az3.id}"]
-  subnets = ["${aws_subnet.PcfVpcPublicSubnet_az1.id}","${aws_subnet.PcfVpcPublicSubnet_az2.id}"]
+  subnets = ["${var.public_subnet_az1_id}","${var.public_subnet_az2_id}"]
   security_groups = ["${aws_security_group.PcfSshElbSg.id}"]
   internal = true /*MRS needs only internal ELBS*/
   listener {

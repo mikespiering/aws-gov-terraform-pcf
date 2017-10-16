@@ -10,7 +10,7 @@ resource "aws_db_instance" "pcf_rds" {
     identifier              = "${var.environment}-pcf"
     allocated_storage       = 100
     engine                  = "mysql"
-    engine_version          = "5.6.27"
+    engine_version          = "5.7.17"
     iops                    = 1000
     instance_class          = "${var.db_instance_type}"
     name                    = "bosh"

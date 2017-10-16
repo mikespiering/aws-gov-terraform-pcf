@@ -16,7 +16,7 @@ output "az3" {
 }
 */
 output "vpc_id" {
-    value = "${aws_vpc.PcfVpc.id}"
+    value = "${var.vpc_id}"
 }
 output "vpc_cidr" {
     value = "${var.vpc_cidr}"
@@ -72,10 +72,11 @@ output "services_subnet_cidr_az1" {
 output "services_subnet_gw_az1" {
     value = "${cidrhost("${var.services_subnet_cidr_az1}", 1)}"
 }
-
+/*
 output "public_subnet_id_az1" {
     value = "${aws_subnet.PcfVpcPublicSubnet_az1.id}"
 }
+*/
 output "ert_subnet_id_az1" {
     value = "${aws_subnet.PcfVpcErtSubnet_az1.id}"
 }
@@ -97,10 +98,11 @@ output "infra_subnet_gw_az1" {
 
 
 # AZ2
-
+/*
 output "public_subnet_cidr_az2" {
     value = "${var.public_subnet_cidr_az2}"
 }
+*/
 output "ert_subnet_cidr_az2" {
     value = "${var.ert_subnet_cidr_az2}"
 }

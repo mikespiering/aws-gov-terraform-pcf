@@ -12,10 +12,11 @@ variable "aws_region" {
 }
 
 /*MRS - existing gateway to attach */
+/* MRS- Already configured by client
 variable "aws_vpn_gateway_id" {
          default = ""
 }
-
+*/
 variable "aws_key_name" {
         default = ""
 }
@@ -54,68 +55,87 @@ variable "db_instance_type" {
     description = "Instance Type for RDS instance"
     default = "db.m3.large"
 }
+variable "vpc_id" {
+    description = "VPC ID"
+    default = ""
+}
+
 variable "vpc_cidr" {
     description = "CIDR for the whole VPC"
     default = "10.0.0.0/16"
 }
+
+variable "public_subnet_az1_id" {
+    description = "subnet for client provided subnet"
+    default = ""
+}
+
+variable "public_subnet_az2_id" {
+    description = "subnet for client provided subnet"
+    default = ""
+}
+
 /*
   Availability Zone 1
 */
-
+/* MRS - Customer provided public subnets
 # public subnet
 variable "public_subnet_cidr_az1" {
     description = "CIDR for the Public Subnet 1"
     default = "10.0.0.0/24"
 }
+*/
 # ERT subnet
 variable "ert_subnet_cidr_az1" {
     description = "CIDR for the Private Subnet 1"
-    default = "10.0.16.0/20"
+    default = "100.64.0.0/20"
 }
 # RDS subnet
 variable "rds_subnet_cidr_az1" {
     description = "CIDR for the RDS Subnet 1"
-    default = "10.0.3.0/24"
+    default = "100.64.64.0/24"
 }
 # Services subnet
 variable "services_subnet_cidr_az1" {
     description = "CIDR for the Services Subnet 1"
-    default = "10.0.64.0/20"
+    default = "100.64.16.0/20"
 }
 
 variable "nat_ip_az1" {
-    default = "10.0.0.6"
+    default = ""
 }
 variable "opsman_ip_az1" {
-    default = "10.0.0.7"
+    default = ""
 }
 
 /*
   Availability Zone 2
 */
 
-
+/* MRS - Customer provided public subnets
 variable "public_subnet_cidr_az2" {
     description = "CIDR for the Public Subnet 2"
     default = "10.0.1.0/24"
 }
+*/
+
 variable "ert_subnet_cidr_az2" {
     description = "CIDR for the Private Subnet 2"
-    default = "10.0.32.0/20"
+    default = "100.64.32.0"
 }
 # RDS subnet
 variable "rds_subnet_cidr_az2" {
     description = "CIDR for the RDS Subnet 2"
-    default = "10.0.4.0/24"
+    default = "100.64.66.0/24"
 }
 # Services subnet
 variable "services_subnet_cidr_az2" {
     description = "CIDR for the Services Subnet 2"
-    default = "10.0.80.0/20"
+    default = "100.64.48.0/20"
 }
 
 variable "nat_ip_az2" {
-    default = "10.0.1.6"
+    default = ""
 }
 
 /*

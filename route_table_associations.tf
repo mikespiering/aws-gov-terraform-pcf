@@ -1,4 +1,5 @@
 # subnet associations for public subnet
+/* MRS - public tables defined by the client
 resource "aws_route_table_association" "a_az1" {
     subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az1.id}"
     route_table_id = "${aws_route_table.PublicSubnetRouteTable.id}"
@@ -7,6 +8,7 @@ resource "aws_route_table_association" "a_az2" {
     subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az2.id}"
     route_table_id = "${aws_route_table.PublicSubnetRouteTable.id}"
 }
+*/
 /*
 resource "aws_route_table_association" "a_az3" {
     subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az3.id}"

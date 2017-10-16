@@ -1,6 +1,7 @@
 /*
   For Region
 */
+/* MRS- Customer will be supplying their own VPC 
 resource "aws_vpc" "PcfVpc" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
@@ -8,9 +9,13 @@ resource "aws_vpc" "PcfVpc" {
         Name = "${var.environment}-terraform-pcf-vpc"
     }
 }
+*/
+
+
+
 /* MRS - NO Internet Gateway, replace with a vpn gateway attachment.
 resource "aws_internet_gateway" "internetGw" {
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-internet-gateway"
     }
@@ -18,18 +23,19 @@ resource "aws_internet_gateway" "internetGw" {
 */
 
 /* MRS - This assumes there is an existing gateway that needs to be attached to the VPC */
+/* this will already be configured- no need to attach 
 resource "aws_vpn_gateway_attachment" "vpn_attachment" {
-  vpc_id         = "${aws_vpc.PcfVpc.id}"
+  vpc_id         = "${var.vpc_id}"
   vpn_gateway_id = "${var.aws_vpn_gateway_id}"
 }
-
-
+*/
+/* MRS- Client provided NAT
 # 3. NAT instance setup
 # 3.1 Security Group for NAT
 resource "aws_security_group" "nat_instance_sg" {
     name = "${var.environment}-nat_instance_sg"
     description = "${var.environment} NAT Instance Security Group"
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-NAT intance security group"
     }
@@ -54,7 +60,7 @@ resource "aws_instance" "nat_az1" {
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.nat_instance_sg.id}"]
     subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az1.id}"
-    associate_public_ip_address = true
+    associate_public_ip_address = false 
     source_dest_check = false
     private_ip = "${var.nat_ip_az1}"
 
@@ -70,7 +76,7 @@ resource "aws_instance" "nat_az2" {
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.nat_instance_sg.id}"]
     subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az2.id}"
-    associate_public_ip_address = true
+    associate_public_ip_address = false 
     source_dest_check = false
     private_ip = "${var.nat_ip_az2}"
 
@@ -78,6 +84,7 @@ resource "aws_instance" "nat_az2" {
         Name = "${var.environment}-Nat Instance az2"
     }
 }
+*/
 /* Ignoring AZ 3 Gov Cloud only offers 2 at the moment.
 # NAT Insance
 resource "aws_instance" "nat_az3" {
