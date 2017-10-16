@@ -8,7 +8,7 @@
 resource "aws_security_group" "PcfHttpElbSg" {
     name = "${var.environment}-pcf_PcfHttpElb_sg"
     description = "Allow incoming connections for PcfHttpElb Elb."
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-PcfHttpElb Security Group"
     }
@@ -41,7 +41,7 @@ resource "aws_security_group" "PcfHttpElbSg" {
 resource "aws_security_group" "PcfSshElbSg" {
     name = "${var.environment}-pcf_PcfSshElb_sg"
     description = "Allow incoming connections for PcfSshElb Elb."
-    vpc_id = "${aws_vpc.PcfVpc.id}"
+    vpc_id = "${var.vpc_id}"
     tags {
         Name = "${var.environment}-PcfSshElb Security Group"
     }

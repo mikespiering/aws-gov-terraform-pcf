@@ -48,11 +48,11 @@ output "dns" {
 
 # AZ1
 
-
+/*
 output "public_subnet_cidr_az1" {
     value = "${var.public_subnet_cidr_az1}"
 }
-
+*/
 output "ert_subnet_cidr_az1" {
     value = "${var.ert_subnet_cidr_az1}"
 }
@@ -119,9 +119,11 @@ output "services_subnet_cidr_az2" {
 output "services_subnet_gw_az2" {
     value = "${cidrhost("${var.services_subnet_cidr_az2}", 1)}"
 }
+/*
 output "public_subnet_id_az2" {
     value = "${aws_subnet.PcfVpcPublicSubnet_az2.id}"
 }
+*/
 output "ert_subnet_id_az2" {
     value = "${aws_subnet.PcfVpcErtSubnet_az2.id}"
 }

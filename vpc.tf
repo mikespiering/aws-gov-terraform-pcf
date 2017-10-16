@@ -58,10 +58,10 @@ resource "aws_instance" "nat_az1" {
     instance_type = "${var.nat_instance_type}"
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.nat_instance_sg.id}"]
-    subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az1.id}"
+    subnet_id = "${var.public_subnet_az1_id}"
     associate_public_ip_address = false 
     source_dest_check = false
-    private_ip = "${var.nat_ip_az1}"
+    #private_ip = "${var.nat_ip_az1}"
 
     tags {
         Name = "${var.environment}-Nat Instance az1"
@@ -74,10 +74,10 @@ resource "aws_instance" "nat_az2" {
     instance_type = "${var.nat_instance_type}"
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.nat_instance_sg.id}"]
-    subnet_id = "${aws_subnet.PcfVpcPublicSubnet_az2.id}"
+    subnet_id = "${var.public_subnet_az2_id}"
     associate_public_ip_address = false 
     source_dest_check = false
-    private_ip = "${var.nat_ip_az2}"
+    #private_ip = "${var.nat_ip_az2}"
 
     tags {
         Name = "${var.environment}-Nat Instance az2"
