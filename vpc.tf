@@ -29,7 +29,6 @@ resource "aws_vpn_gateway_attachment" "vpn_attachment" {
   vpn_gateway_id = "${var.aws_vpn_gateway_id}"
 }
 */
-/* MRS- Client provided NAT
 # 3. NAT instance setup
 # 3.1 Security Group for NAT
 resource "aws_security_group" "nat_instance_sg" {
@@ -84,7 +83,6 @@ resource "aws_instance" "nat_az2" {
         Name = "${var.environment}-Nat Instance az2"
     }
 }
-*/
 /* Ignoring AZ 3 Gov Cloud only offers 2 at the moment.
 # NAT Insance
 resource "aws_instance" "nat_az3" {
