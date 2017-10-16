@@ -5,7 +5,7 @@ resource "aws_instance" "opsmman_az1" {
     instance_type = "${var.opsman_instance_type}"
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.directorSG.id}"]
-    subnet_id = "{$var.public_subnet_az1_id}"
+    subnet_id = "${var.public_subnet_az1_id}"
 /* MRS no public internet address */
     associate_public_ip_address = false
     private_ip = "${var.opsman_ip_az1}"

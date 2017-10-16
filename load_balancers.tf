@@ -5,16 +5,16 @@ resource "aws_elb" "PcfHttpElb" {
   internal = true /*MRS needs only internal ELBS*/
   listener {
     instance_port = 443
-    instance_protocol = "TCP"
+    instance_protocol = "SSL"
     lb_port = 443
-    lb_protocol = "SSL"
+    lb_protocol = "TCP"
  #   ssl_certificate_id = "${var.aws_cert_arn}"
   }
   listener {
     instance_port = 443
-    instance_protocol = "TCP"
+    instance_protocol = "SSL"
     lb_port = 4443
-    lb_protocol = "SSL"
+    lb_protocol = "TCP"
   #  ssl_certificate_id = "${var.aws_cert_arn}"
   } 
   health_check {
