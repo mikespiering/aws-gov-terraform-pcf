@@ -24,6 +24,7 @@ resource "aws_elb" "PcfHttpElb" {
     unhealthy_threshold = 2
     healthy_threshold = 10
   }
+  idle_timeout = 600
   tags {
     Name = "${var.environment}-Pcf Http Elb"
   }
