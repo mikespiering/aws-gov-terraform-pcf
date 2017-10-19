@@ -29,9 +29,9 @@ resource "aws_security_group" "directorSG" {
         from_port = 0
         to_port = 0
         protocol = -1
-      #  cidr_blocks = ["${var.vpc_cidr}"]
+        cidr_blocks = ["${var.vpc_cidr}"]
         self  = true
-#     security_groups = ["${aws_security_group.pcfSG.id}"]
+   #     security_groups = ["${aws_security_group.pcfSG.id}"]
     }
     egress {
         from_port = 0
@@ -58,8 +58,8 @@ resource "aws_security_group" "pcfSG" {
         from_port = 0
         to_port = 0
         protocol = "-1"
-     #   cidr_blocks = ["${var.vpc_cidr}"]
-        self = true
+        cidr_blocks = ["${var.vpc_cidr}"]
+     #   self = true
         security_groups = ["${aws_security_group.directorSG.id}"]
 }
     egress {
@@ -84,8 +84,8 @@ resource "aws_security_group" "rdsSG" {
         from_port = 3306
         to_port = 3306
         protocol = "tcp"
-  #      cidr_blocks = ["${var.vpc_cidr}"]
-       security_groups = ["${aws_security_group.pcfSG.id}","${aws_security_group.directorSG.id}"]  
+        cidr_blocks = ["${var.vpc_cidr}"]
+        security_groups = ["${aws_security_group.directorSG.id}"]  
   }
     egress {
         from_port = 0
@@ -95,7 +95,7 @@ resource "aws_security_group" "rdsSG" {
     }
 
 }
-
+/*
 resource "aws_security_group_rule" "directorToPCFVms" {
   type            = "ingress"
   from_port       = 0
@@ -104,3 +104,4 @@ resource "aws_security_group_rule" "directorToPCFVms" {
   security_group_id = "${aws_security_group.directorSG.id}"
   source_security_group_id = "${aws_security_group.pcfSG.id}"
 }
+*/
