@@ -24,7 +24,7 @@ resource "aws_security_group" "directorSG" {
         to_port = 443
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
-    }
+   }
     ingress {
         from_port = 0
         to_port = 0
@@ -60,7 +60,7 @@ resource "aws_security_group" "pcfSG" {
         protocol = "-1"
         cidr_blocks = ["${var.vpc_cidr}"]
      #   self = true
-        security_groups = ["${aws_security_group.directorSG.id}"]
+        security_groups = ["${aws_security_group.directorSG.id}","${aws_security_group.PcfHttpElbSg.id}"]
 }
     egress {
         from_port = 0
