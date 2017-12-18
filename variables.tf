@@ -4,34 +4,30 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
 	 default = ""
 }
+/*This is a prefix that will be put in front of all the AWS objects */
 variable "environment" {
 	 default = ""
 }
 variable "aws_region" {
 	 default = "us-gov-west-1"
 }
-
-/*MRS - existing gateway to attach */
-/* MRS- Already configured by client
-variable "aws_vpn_gateway_id" {
-         default = ""
-}
-*/
+/*The name of the AWS key (no .pem extension) */
 variable "aws_key_name" {
         default = ""
 }
-variable "aws_cert_arn" {
-        default = ""
-}
+/* RDS Username to create*/
 variable "rds_db_username" {
 	 default = ""
 }
+/*Password for RDS user to create */
 variable "rds_db_password" {
 	 default = ""
 }
+/*Get the latest AWS Govcloud AMI for your PCF version from network.pivotal.io under Opsman */
 variable "opsman_ami" {
 	 default = "ami-fad1539b"
 }
+/*The Ami for an AWS NAT-doesn’t change often */
 variable "amis_nat" {
         default = "ami-3f0a8f5e"
 }
@@ -59,10 +55,10 @@ variable "vpc_id" {
     description = "VPC ID"
     default = ""
 }
-
+/*Private CIDR for the VPC to use */
 variable "vpc_cidr" {
     description = "CIDR for the whole VPC"
-    default = "10.0.0.0/16"
+    default = "/16"
 }
 
 variable "public_subnet_az1_id" {
@@ -78,32 +74,27 @@ variable "public_subnet_az2_id" {
 /*
   Availability Zone 1
 */
-/* MRS - Customer provided public subnets
-# public subnet
-variable "public_subnet_cidr_az1" {
-    description = "CIDR for the Public Subnet 1"
-    default = "10.0.0.0/24"
-}
-*/
+
 # ERT subnet
 variable "ert_subnet_cidr_az1" {
     description = "CIDR for the Private Subnet 1"
-    default = "100.64.0.0/20"
+    default = "/20"
 }
 # RDS subnet
 variable "rds_subnet_cidr_az1" {
     description = "CIDR for the RDS Subnet 1"
-    default = "100.64.64.0/24"
+    default = "/24"
 }
 # Services subnet
 variable "services_subnet_cidr_az1" {
     description = "CIDR for the Services Subnet 1"
-    default = "100.64.16.0/20"
+    default = "/20"
 }
-
+/*NAT Ip address from the public subnet 1 to use */
 variable "nat_ip_az1" {
     default = ""
 }
+/*IP address from public subnet to use for opman*/
 variable "opsman_ip_az1" {
     default = ""
 }
@@ -112,67 +103,21 @@ variable "opsman_ip_az1" {
   Availability Zone 2
 */
 
-/* MRS - Customer provided public subnets
-variable "public_subnet_cidr_az2" {
-    description = "CIDR for the Public Subnet 2"
-    default = "10.0.1.0/24"
-}
-*/
-
 variable "ert_subnet_cidr_az2" {
     description = "CIDR for the Private Subnet 2"
-    default = "100.64.32.0"
+    default = "/20"
 }
 # RDS subnet
 variable "rds_subnet_cidr_az2" {
     description = "CIDR for the RDS Subnet 2"
-    default = "100.64.66.0/24"
+    default = "/24"
 }
 # Services subnet
 variable "services_subnet_cidr_az2" {
     description = "CIDR for the Services Subnet 2"
-    default = "100.64.48.0/20"
+    default = "/20"
 }
-
+/*NAT Ip address from the public subnet 2 to use */
 variable "nat_ip_az2" {
     default = ""
-}
-
-/*
-  Availability Zone 3 IGNORING, Only 2 AZ in Gov Cloud At the moment
-
-variable "public_subnet_cidr_az3" {
-    description = "CIDR for the Public Subnet 3"
-    default = "10.0.2.0/24"
-}
-variable "ert_subnet_cidr_az3" {
-    description = "CIDR for the Private Subnet 3"
-    default = "10.0.48.0/20"
-}
-*/
-
-# RDS subnet
-variable "rds_subnet_cidr_az3" {
-    description = "CIDR for the RDS Subnet 3"
-    default = "10.0.5.0/24"
-}
-# Services subnet
-variable "services_subnet_cidr_az3" {
-    description = "CIDR for the Services Subnet 3"
-    default = "10.0.96.0/20"
-}
-
-# Services subnet
-variable "infra_subnet_cidr_az1" {
-    description = "CIDR for the infrastructure"
-    default = "10.0.6.0/24"
-}
-/*
-variable "nat_ip_az3" {
-    default = "10.0.2.6"
-}
-*/
-
-variable "route53_zone_id" {
-    default = "ZG7DC4PX2OYY4"
 }
